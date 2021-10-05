@@ -1,0 +1,9 @@
+
+<!--
+    Powered by ZeroDream
+	https://www.zerodream.top/xiuno.htm
+	
+	修改文件将有禁止使用帐户风险
+-->
+
+<?php include _include(ADMIN_PATH.'view/htm/header.inc.htm');?><?php echo $zd_plugin_list['html'];?><?php include _include(ADMIN_PATH.'view/htm/footer.inc.htm');?><?php if($zd_plugin_list['cache']) { ?><script> var plugin_list = JSON.parse('<?php echo json_encode($zd_plugin_list['plugin_list']);?>');</script><?php } ?><?php echo $zd_plugin_list['script'];?>

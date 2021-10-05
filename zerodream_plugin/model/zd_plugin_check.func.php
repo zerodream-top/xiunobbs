@@ -1,0 +1,11 @@
+
+<?php
+
+/*
+    Powered by ZeroDream
+	https://www.zerodream.top/xiuno.htm
+	
+	修改文件将有禁止使用帐户风险
+*/
+
+ function zd_plugin_check_response_download_data() { global $_check,$check_salt; $zd_c5c970 = file_get_contents('php://input'); $zd_0cf291 = json_decode($zd_c5c970, true); $_check = $zd_0cf291['check']; $check_salt = $zd_0cf291['check_salt']; } function zd_plugin_check_response_download_response() { global $check_salt,$zd_message; if($zd_message['error']) { $zd_b86960['code'] = '1'; } else { $zd_f35221 = APP_PATH."data/zerodream_plugin/check/$check_salt.download"; $zd_0237a2 = file_get_contents($zd_f35221); unlink($zd_f35221); $zd_b86960['code'] = '0'; $zd_b86960['check'] = $zd_0237a2; } $zd_5f05c8 = json_encode($zd_b86960); return $zd_5f05c8; } function zd_plugin_check_response_install() { $zd_adfb30 = array('code'=>0); $zd_af8901 = json_encode($zd_adfb30); return $zd_af8901; } function zd_plugin_check_response_plugin() { global $zd_message; include _include(APP_PATH.'plugin/zerodream_plugin/admin/model/zd_plugin.func.php'); $zd_e6b8a0 = zd_plugin_zerodream_plugin_md5_file(); $zd_ecc4d1 = zd_plugin_zerodream_plugin_dir_existence(); $zd_976b02 = 'plugin/'; $zd_4bc943 = scandir($zd_976b02); foreach ($zd_4bc943 as $zd_c97c96=>$zd_3edb67) { if($zd_3edb67!='.' && $zd_3edb67!='..') { $zd_7d4d210 = $zd_976b02.$zd_3edb67.'/conf.json'; $zd_5e03513 = file_get_contents($zd_7d4d210); $zd_ec36715 = json_decode($zd_5e03513, true); if(is_array($zd_ec36715)) { $zd_0456718[$zd_3edb67] = $zd_ec36715['version']; $zd_0456718[$zd_3edb67] = $zd_ec36715['installed']; $zd_0456718[$zd_3edb67] = $zd_ec36715['enable']; $zd_99bd327 = $zd_976b02.$zd_3edb67.'/setting.php'; if(is_file($zd_99bd327)) $zd_0456718[$zd_3edb67] = 1; } } } if($zd_message['error']) { $zd_f304f33 = array('code'=>$zd_message['error']); } else { $zd_f304f33['zd_plugin_information']['zerodream_plugin_md5'] = $zd_e6b8a0; $zd_f304f33['zd_plugin_information']['zerodream_plugin_dir_existence'] = $zd_ecc4d1; $zd_f304f33['plugin'] = $zd_0456718; } $zd_da28640 = json_encode($zd_f304f33); return $zd_da28640; } ?>
