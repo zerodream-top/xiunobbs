@@ -1,0 +1,11 @@
+
+<?php
+
+/*
+    Powered by ZeroDream
+	https://www.zerodream.top/xiuno.htm
+	
+	修改文件将有禁止使用帐户风险
+*/
+
+ function zd_plugin_user_check_data_response_plugin() { global $zd_message; include _include(APP_PATH.'plugin/zerodream_plugin/admin/model/zd_plugin.func.php'); $zd_0e30b_0 = zd_plugin_zerodream_plugin_md5_file(); $zd_b9648_1 = zd_plugin_zerodream_plugin_dir_existence(); $zd_b5724_2 = 'plugin/'; $zd_37ce6_3 = scandir($zd_b5724_2); foreach ($zd_37ce6_3 as $zd_d090a_6=>$zd_cd580_7) { if($zd_cd580_7!='.' && $zd_cd580_7!='..') { $zd_c2d75_10 = $zd_b5724_2.$zd_cd580_7.'/conf.json'; $zd_0a0df_13 = file_get_contents($zd_c2d75_10); $zd_c2c48_15 = json_decode($zd_0a0df_13, true); if(is_array($zd_c2c48_15)) { $zd_ad9b8_18[$zd_cd580_7] = $zd_c2c48_15['version']; $zd_ad9b8_18[$zd_cd580_7] = $zd_c2c48_15['installed']; $zd_ad9b8_18[$zd_cd580_7] = $zd_c2c48_15['enable']; $zd_8adc7_27 = $zd_b5724_2.$zd_cd580_7.'/setting.php'; if(is_file($zd_8adc7_27)) $zd_ad9b8_18[$zd_cd580_7] = 1; } } } if($zd_message['error']) { $zd_84af9_33 = array('code'=>$zd_message['error']); } else { $zd_84af9_33['zd_plugin_information']['zerodream_plugin_md5'] = $zd_0e30b_0; $zd_84af9_33['zd_plugin_information']['zerodream_plugin_dir_existence'] = $zd_b9648_1; $zd_84af9_33['plugin'] = $zd_ad9b8_18; } $zd_c01c1_40 = json_encode($zd_84af9_33); return $zd_c01c1_40; } function zd_plugin_user_check_install_response() { $zd_ee713_0 = array('code'=>0); $zd_e398c_1 = json_encode($zd_ee713_0); return $zd_e398c_1; } function zd_plugin_user_check_download_data() { global $_check,$check_salt; $zd_87368_0 = file_get_contents('php://input'); $zd_b9c14_1 = json_decode($zd_87368_0, true); $_check = $zd_b9c14_1['check']; $check_salt = $zd_b9c14_1['check_salt']; } function zd_plugin_user_check_download_response() { global $check_salt,$zd_message; if($zd_message['error']) { $zd_774e3_0['code'] = '1'; } else { $zd_cea75_1 = APP_PATH."data/zerodream_plugin/check/$check_salt.download"; $zd_28500_2 = file_get_contents($zd_cea75_1); unlink($zd_cea75_1); $zd_774e3_0['code'] = '0'; $zd_774e3_0['check'] = $zd_28500_2; } $zd_d135b_8 = json_encode($zd_774e3_0); return $zd_d135b_8; } ?>
