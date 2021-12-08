@@ -1,5 +1,5 @@
 
-<?php exit;
+<?php
 
 /*
     Powered by ZeroDream
@@ -9,4 +9,4 @@
 	修改文件将有禁止使用帐户风险
 */
 
- rmdir_recusive($conf['tmp_path'], 1); ?>
+ return array( 'cache' => array( 'cache_time' => 10*24*60*60, ), ); ?>

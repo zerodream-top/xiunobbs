@@ -1,9 +1,10 @@
 
 <!--
     Powered by ZeroDream
+    Optimized by ZeroDream
 	https://www.zerodream.top/xiuno.htm
 	
 	修改文件将有禁止使用帐户风险
 -->
 
-<?php if($route.'-'.$action!='index-login') { $zd_data = zd_data_get(); $wait_read = $zd_data['zd_plugin_read']['wait_read']; if(!empty($wait_read)) { $zd_data['zd_plugin_read']['wait_read'] = ''; zd_data_put($zd_data); ?><script> $.confirm('<?php echo "是否查看插件 $wait_read";?>', function(){window.location.href='<?php echo url("plugin-zerodream_plugin_read-$wait_read");?>';});</script><?php }} ?>
+<?php if($route.'-'.$action!='index-login') { $zd_data = zd_data_get(); $wait_read = $zd_data['zd_plugin_read']['wait_read']; if(!empty($wait_read)) { $zd_data['zd_plugin_read']['wait_read'] = ''; zd_data_put($zd_data); ?><script>$.confirm('<?php echo "是否查看插件 $wait_read";?>', function(){window.location.href='<?php echo url("plugin-zerodream_plugin_read-$wait_read");?>';});</script><?php }} ?>
