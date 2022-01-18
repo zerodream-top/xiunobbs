@@ -1,2 +1,2 @@
 
-{"plugin":{"zd_tid":"111","zd_uid":"2","zd_username":"ConanKaito"},"zerodream_compression":{"file_exclude_default":false,"function_variable_default":false,"include_merge_default":true}}
+{"zd_plugin":{"zd_tid":"111","zd_uid":"2","zd_username":"ConanKaito"},"zd_compression":{"file_exclude_default":false,"php_function_variable_default":false,"php_include_merge_default":true}}

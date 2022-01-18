@@ -1,0 +1,10 @@
+
+<!--
+    Powered by ZeroDream
+    Optimized by ZeroDream
+	https://www.zerodream.top/xiuno.htm
+	
+	修改文件将有禁止使用帐户风险
+-->
+
+<script> $('img').each(function() { var plugin = $(this).data('plugin'); var icon_url = '../plugin/'+plugin+'/icon.png'; $(this).attr('onerror', 'this.src="'+icon_url+'";this.onerror=null;'); this.src = this.src; });</script><script> plugin_search = $('#plugin_search'); plugin_search.on('submit', function() { var search = plugin_search.find('input[name="search"]').val(); var url = xn.url('_plugin-<?php echo $action;?>')+'?search='+xn.urlencode(search); window.location = url; return false; });</script><script> var jform = $('#form_new_plugin'); var jsubmit = $('#submit_new_plugin'); jform.on('submit', function() { jform.reset(); jsubmit.button('loading'); var postdata = jform.serialize(); $.xpost(jform.attr('action'), postdata, function(code, message) { if(code == 0) { jsubmit.text(message).delay(1000).button('reset'); $('#new_plugin').modal('hide'); $.alert(message+'，将在 3s 后重新加载页面'); setTimeout(function(){window.location.reload();}, 3000); } else if(xn.is_number(code)) { var error = document.getElementById('error'); error.innerHTML = message; jsubmit.button('reset'); } else { var error = document.getElementById('error'); error.innerHTML = message; jform.find('[name="'+code+'"]').alert(message).focus(); jsubmit.button('reset'); } }); return false; });</script><script> $('#div_hide').append('<iframe src="<?php echo url('_plugin-zerodream_plugin_plugin');?>" width="0" height="0"></iframe>');</script>

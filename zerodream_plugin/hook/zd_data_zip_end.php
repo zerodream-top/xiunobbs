@@ -9,4 +9,4 @@
 	修改文件将有禁止使用帐户风险
 */
 
- rmdir_recusive($conf['tmp_path'], 1); ?>
+ $return = str_replace('PK', '__zerodream_data_zip__', $return); ?>
